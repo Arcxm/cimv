@@ -6,8 +6,6 @@ In the current version, cimv scales the images to fit the terminal size.
 
 cimv uses [ANSI Color Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code#Colors) to draw images in the terminal.
 
-Also, cimv currently only supports Windows as it uses the windows headers to determine the terminal size, but support for other operating systems is planned (see [Plans](#plans))!
-
 ## **Thanks**
 
 **Huge thanks** to [stb](https://github.com/nothings/stb) and their single-header C libraries without which this would not have been possible.
@@ -17,7 +15,7 @@ Also, cimv currently only supports Windows as it uses the windows headers to det
 - [Build](#build)
 - [Usage](#usage)
 - [Plans](#plans)
-- [Examples (Screenshot)](#examples)
+- [Examples (Screenshots)](#examples)
 - [Known Issues](#known-issues)
 
 ## Build
@@ -37,13 +35,23 @@ $ ./cimv -h
 $ ./cimv my_image.png
 ```
 
+## Changelog
+
+### 0.2
+
+- Added support for linux
+
+### 0.1
+
+- First release
+
 ## Plans
 
 - Fix [Known Issues](#known-issues)
-- Support other operating systems
 - Allow moving the image
 - Support image scaling
 - Support mirroring, flipping upside down
+- Customization of drawing character
 - Add filters
     - Grayscale
     - Invert colors
@@ -52,9 +60,15 @@ $ ./cimv my_image.png
 
 ## Examples
 
-### My GitHub Avatar
+Using my GitHub Avatar.
 
-![Screenshot - Arcxm Avatar](screenshots/Screenshot_Arcxm_GitHub_Avatar.png)
+### Windows
+
+![Screenshot - Windows Arcxm Avatar](screenshots/Screenshot_Windows_Arcxm_GitHub_Avatar.png)
+
+### Linux
+
+![Screenshot - Linux Arcxm Avatar](screenshots/Screenshot_Linux_Arcxm_GitHub_Avatar.png)
 
 ## Known Issues
 
