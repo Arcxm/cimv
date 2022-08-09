@@ -1,3 +1,11 @@
+# VSCode
+
+.vscode
+
+# Test Images
+
+test_images/
+
 # Prerequisites
 *.d
 
