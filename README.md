@@ -22,7 +22,13 @@ Also, cimv currently only supports Windows as it uses the windows headers to det
 
 ## Build
 
-To build cimv, simply clone the repository and run `make`.
+`main`: latest stable version.
+
+`develop`: most recent in-develop version.
+
+See [Tags](https://github.com/Arcxm/cimv/tags) for specific versions.
+
+To build cimv, simply run make.
 
 ## Usage
 
