@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include <Windows.h>
+#include <getopt.h>
 
-#include "getopt.h"
+#include <Windows.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -149,6 +149,7 @@ int main(int argc, char **argv) {
                 stbi_uc *resized_data = (stbi_uc*) malloc(sizeof(stbi_uc) * (out_width * out_height * image_comp));
                 if (resized_data) {
                     // Resize the image
+                    //INSPECT OTHER RESIZE FUNCTIONS, FOR ALPHA CHANNEL SUPPORT
                     if (stbir_resize_uint8(data, image_width, image_height, 0, resized_data, out_width, out_height, out_width * image_comp, image_comp)) {
                         // From here on the original image is no longer needed
                         stbi_image_free(data);
