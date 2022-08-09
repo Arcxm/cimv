@@ -14,6 +14,7 @@ cimv uses [ANSI Color Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_co
 
 - [Build](#build)
 - [Usage](#usage)
+- [Changelog](#changelog)
 - [Plans](#plans)
 - [Examples (Screenshots)](#examples)
 - [Known Issues](#known-issues)
