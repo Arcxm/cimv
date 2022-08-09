@@ -4,15 +4,28 @@
 
 #include <getopt.h>
 
-#include <Windows.h>
+#ifdef _WIN32
+    #include <Windows.h>
+
+    #define DEFAULT_BLOCK ((char) 219)
+#endif // _WIN32
+
+#ifdef linux
+    #include <sys/ioctl.h>
+
+    #define DEFAULT_BLOCK ('#')
+#endif // linux
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #define STB_IMAGE_RESIZE_IMPLEMENTATION
 #include "stb_image_resize.h"
 
-#define CIMV_VERSION "0.1"
-#define DEFAULT_BLOCK ((char) 219)
+#ifndef min
+    #define min(a,b) ((a)<(b)?(a):(b))
+#endif // min
+
+#define CIMV_VERSION "0.2"
 
 /**
  * @brief Prints the version
@@ -40,21 +53,30 @@ void print_help() {
  * @param height Pointer to an int to which the height of the terminal is assigned
  */
 bool get_term_size(int *width, int *height) {
-    // TODO: Also support other operating systems like linux
+    #ifdef _WIN32
+        HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 
-    HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+        if (hStdOut != INVALID_HANDLE_VALUE) {
+            CONSOLE_SCREEN_BUFFER_INFO csbi;
 
-    if (hStdOut != INVALID_HANDLE_VALUE) {
-        CONSOLE_SCREEN_BUFFER_INFO csbi;
+            GetConsoleScreenBufferInfo(hStdOut, &csbi);
+            *width = csbi.dwSize.X;
+            *height = csbi.dwSize.Y;
 
-        GetConsoleScreenBufferInfo(hStdOut, &csbi);
-        *width = csbi.dwSize.X;
-        *height = csbi.dwSize.Y;
+            return true;
+        } else {
+            return false;
+        }
+    #endif // _WIN32
+
+    #ifdef linux
+        struct winsize w_sz;
+        ioctl(0, TIOCGWINSZ, &w_sz);
+        *width = w_sz.ws_col;
+        *height = w_sz.ws_row;
 
         return true;
-    } else {
-        return false;
-    }
+    #endif // linux
 }
 
 /**
